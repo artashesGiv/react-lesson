@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/React_kabzda.iml" filepath="$PROJECT_DIR$/.idea/React_kabzda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-kabzda.iml" filepath="$PROJECT_DIR$/.idea/react-kabzda.iml" />
     </modules>
   </component>
 </project>
