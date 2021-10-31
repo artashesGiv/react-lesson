@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 
 
 const OnOff = () => {
-   console.log('init')
+
    let [on, setOn] = useState(false)
 
    const onStyle = {
