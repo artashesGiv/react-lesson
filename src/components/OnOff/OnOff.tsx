@@ -1,28 +1,45 @@
 import React, {useState} from 'react'
 
+type OnnOffPropsType = {
+   /**
+    * Надпись на кнопке включения
+    */
+   onTitle: string
+   /**
+    * Надпись на кнопке выключения
+    */
+   offTitle: string
+   /**
+    * Цвет включенного тумблера
+    */
+   colorOn?: string
+   /**
+    * Цвет выключенного тумблера
+    */
+   colorOff?: string
+}
 
+const OnOff = (props: OnnOffPropsType) => {
+   const colorOn = props.colorOn ? props.colorOn : 'green'
+   const colorOff = props.colorOff ? props.colorOff : 'red'
+   // const onTitle = props.onTitle ? props.onTitle : 'On'
+   // const offTitle = props.offTitle ? props.offTitle : 'Off'
 
-const OnOff = () => {
-
-   let [on, setOn] = useState(false)
+   let [on, setOn] = useState(true)
 
    const onStyle = {
-      width: '30px',
-      height: '20px',
       border: '1px solid black',
       display: 'inline-block',
       padding: '2px',
-      backgroundColor: on ? 'green' : 'white',
+      backgroundColor: !on ? 'white' : colorOn,
       cursor: 'pointer',
    }
    const offStyle = {
-      width: '30px',
-      height: '20px',
       border: '1px solid black',
       display: 'inline-block',
       marginLeft: '5px',
       padding: '2px',
-      backgroundColor: on ? 'white' : 'red',
+      backgroundColor: on ? 'white' : colorOff,
       cursor: 'pointer',
 
    }
@@ -33,15 +50,19 @@ const OnOff = () => {
       border: '1px solid black',
       display: 'inline-block',
       marginLeft: '5px',
-      backgroundColor: on ? 'green' : 'red',
+      backgroundColor: on ? colorOn : colorOff,
    }
 
 
    return (
       <div>
-         <div style={onStyle} onClick={() => {  setOn(true)   }}>On
+         <div style={onStyle} onClick={() => {
+            setOn(true)
+         }}>{props.onTitle}
          </div>
-         <div style={offStyle} onClick={() => { setOn(false)  }}>Off
+         <div style={offStyle} onClick={() => {
+            setOn(false)
+         }}>{props.offTitle}
          </div>
          <div style={indicatorStyle}/>
       </div>

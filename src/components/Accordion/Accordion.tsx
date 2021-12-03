@@ -1,24 +1,33 @@
-import React, {useState} from 'react'
+import React, {useReducer} from 'react'
+import {reducer} from './Reducer'
 
-type AccordionPropsType = {
+type itemType = {
    title: string
+   value: any
+}
+
+export type AccordionPropsType = {
+   title: string
+   items: itemType[]
+   onClick: (value: any) => void
 }
 
 function Accordion(props: AccordionPropsType) {
 
-   let [collapsed, setCollapsed] = useState(true)
+   // let [collapsed, setCollapsed] = useState(true)
+   let [collapsed, dispatch] = useReducer(reducer, true)
+
    return (
       <div>
          <AccordionTitle title={props.title} collapsed={() => {
-            setCollapsed(!collapsed)
+            dispatch({type: 'TOGGLE-COLLAPSED'})
          }}/>
          {
-            !collapsed && <AccordionBody/>
+            !collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>
          }
       </div>
    )
 }
-
 
 type AccordionTitlePropsType = {
    title: string
@@ -30,7 +39,6 @@ function AccordionTitle(props: AccordionTitlePropsType) {
       cursor: 'pointer',
    }
 
-
    return (
       <div style={accordionStyle}>
          <h3 onClick={props.collapsed}>{props.title}</h3>
@@ -38,13 +46,19 @@ function AccordionTitle(props: AccordionTitlePropsType) {
    )
 }
 
-function AccordionBody() {
-   return <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-   </ul>
+type AccordionBodyPropsType = {
+   items: itemType[]
+   onClick: (value: any) => void
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
+   return (
+      <ul>
+         {props.items.map((i, index) => <li key={index} onClick={() => {
+            props.onClick(i.value)
+         }}>{i.title}</li>)}
+      </ul>
+   )
 }
 
 export default Accordion

@@ -16,7 +16,7 @@ function App() {
 
          <Rating/>
 
-         <OnOff/>
+         <OnOff onTitle={'On'} offTitle={'Off'}/>
 
       </div>
    )
