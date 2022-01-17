@@ -4,6 +4,7 @@ import s from './Select.module.css'
 type itemType = {
    title: string
    value: any
+   population?: number
 }
 
 type SelectPropsType = {
@@ -13,7 +14,7 @@ type SelectPropsType = {
 }
 
 export const Select = (props: SelectPropsType) => {
-
+   console.log('select')
    const [active, setActive] = useState(false)
    const [hoveredElementValue, setHoveredElementValue] = useState(props.value)
    const toggleItems = () => setActive(!active)
